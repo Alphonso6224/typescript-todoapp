@@ -1,20 +1,19 @@
 <template>
   <main class="main">
     <ul class="todo-list">
-        <!-- TodoItem v-for= -->
-        <TodoItem v-for="todo in taches" :key="todo.id" :todo="todo"/>
+      <!-- TodoItem v-for= -->
+      <TodoItem v-for="todo in taches" :key="todo.id" :todo="todo" />
     </ul>
-    </main>
+  </main>
 </template>
 
 <script setup lang="ts">
-import type { Todo } from '@/@types';
-import TodoItem from '@/components/TodoItem.vue';
-
+import type { Todo } from '@/@types'
+import TodoItem from '@/components/TodoItem.vue'
 
 const props = defineProps<{
-    taches: Todo[]
-}>();
+  taches: Todo[]
+}>()
 </script>
 
 <style scoped></style>
