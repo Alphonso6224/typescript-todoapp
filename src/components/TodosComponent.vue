@@ -4,7 +4,12 @@
     <TodoHeader @add-todo="addTodo" />
 
     <!-- Main -->
-    <TodoMain :taches="todos" @delete-todo="deleteTodo" @complete-todo="completedTodo"/>
+    <TodoMain
+      :taches="todos"
+      @delete-todo="deleteTodo"
+      @complete-todo="completedTodo"
+      @edit-todo="editTodo"
+    />
 
     <!-- Footerr -->
     <TodoFooter :todos="todos" />
@@ -35,6 +40,10 @@ function deleteTodo(elm: Todo): void {
 
 function completedTodo(todo: Todo, completedValue: boolean) {
   todo.complete = completedValue
+}
+
+function editTodo(todo: Todo, value: string) {
+  todo.title = value
 }
 </script>
 
