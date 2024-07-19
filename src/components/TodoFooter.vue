@@ -1,7 +1,9 @@
 <template>
   <footer v-if="todos.length" class="footer">
     <span class="todo-count">
-      <strong>{{ remaining }}</strong> tâche{{ remaining > 1 ? 's' : '' }} restante{{ remaining > 1 ? 's' : '' }}
+      <strong>{{ remaining }}</strong> tâche{{ remaining > 1 ? 's' : '' }} restante{{
+        remaining > 1 ? 's' : ''
+      }}
     </span>
     <ul class="filters">
       <li>
@@ -20,12 +22,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Todo } from '@/@types';
+import type { Todo } from '@/@types'
 import { computed, ref } from 'vue'
 const props = defineProps<{
   todos: Todo[]
-}>();
-const remaining = computed(() => props.todos.filter(todo => !todo.complete).length)
+}>()
+const remaining = computed(() => props.todos.filter((todo) => !todo.complete).length)
 </script>
 
 <style scoped></style>
