@@ -4,7 +4,7 @@
     <TodoHeader @add-todo="addTodo" />
 
     <!-- Main -->
-    <TodoMain :taches="todos" />
+    <TodoMain :taches="todos" @delete-todo="deleteTodo" @complete-todo="completedTodo"/>
 
     <!-- Footerr -->
     <TodoFooter :todos="todos" />
@@ -21,12 +21,20 @@ import { nanoid } from 'nanoid'
 
 const todos = ref<Todo[]>([])
 
-function addTodo(value: string) {
+function addTodo(value: string): void {
   todos.value.unshift({
     id: nanoid(),
     title: value,
     complete: false
   })
+}
+
+function deleteTodo(elm: Todo): void {
+  todos.value = todos.value.filter((todo) => todo !== elm)
+}
+
+function completedTodo(todo: Todo, completedValue: boolean) {
+  todo.complete = completedValue
 }
 </script>
 
