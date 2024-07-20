@@ -31,29 +31,26 @@ import { useRoute } from 'vue-router'
 const todos = useStorage<Todo[]>('todoapp-todos', [])
 const route = useRoute()
 
-
 const filters = computed(() => {
   return {
-  all: todos,
-  waiting: todos.value.filter((todo) => !todo.complete),
-  completed: todos.value.filter((todo) => todo.complete),
-}
-});
+    all: todos,
+    waiting: todos.value.filter((todo) => !todo.complete),
+    completed: todos.value.filter((todo) => todo.complete)
+  }
+})
 
 const waitingTodos = computed<Todo[]>(() => filters.value.waiting)
 const completedTodos = computed<Todo[]>(() => filters.value.completed)
 
-
-
 const filteredTodos = computed(() => {
   switch (route.name) {
-  case 'waiting':
-    return waitingTodos.value
-  case 'completed':
-    return completedTodos.value
-  default:
-    return todos.value
-}
+    case 'waiting':
+      return waitingTodos.value
+    case 'completed':
+      return completedTodos.value
+    default:
+      return todos.value
+  }
 })
 
 function addTodo(value: string): void {
