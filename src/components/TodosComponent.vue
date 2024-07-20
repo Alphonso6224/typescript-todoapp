@@ -27,6 +27,7 @@ import { nanoid } from 'nanoid'
 const todos = ref<Todo[]>([])
 
 function addTodo(value: string): void {
+  if (!value.trim().length) return
   todos.value.unshift({
     id: nanoid(),
     title: value,
