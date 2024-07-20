@@ -12,7 +12,7 @@
     />
 
     <!-- Footer -->
-    <TodoFooter :todos="todos" />
+    <TodoFooter :todos="todos" @delete-completed="deleteCompleted"/>
   </div>
 </template>
 
@@ -60,6 +60,10 @@ function addTodo(value: string): void {
     title: value,
     complete: false
   })
+}
+
+function deleteCompleted(): void {
+  todos.value = todos.value.filter((todo) => !todo.complete)
 }
 
 function deleteTodo(elm: Todo): void {
