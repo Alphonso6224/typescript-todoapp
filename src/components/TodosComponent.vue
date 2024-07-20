@@ -23,8 +23,11 @@ import TodoFooter from '@/components/TodoFooter.vue'
 import type { Todo } from '@/@types'
 import { ref } from 'vue'
 import { nanoid } from 'nanoid'
+import { useStorage } from '@vueuse/core'
 
-const todos = ref<Todo[]>([])
+// const todos = ref<Todo[]>([])
+// Utilisation du useStorage
+const todos = useStorage<Todo[]>('todoapp-todos', [])
 
 function addTodo(value: string): void {
   if (!value.trim().length) return
