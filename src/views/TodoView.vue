@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import TodosComponent from '@/components/TodosComponent.vue'
+import TodosComponent from '@/components/TodosComponent.vue';
 </script>
 
 <style scoped></style>

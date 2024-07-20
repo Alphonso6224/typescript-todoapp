@@ -11,8 +11,8 @@
       autofocus
       autocomplete="off"
       @keyup.enter="
-        emit('add-todo', ($event.target as HTMLInputElement).value)
-        ;($event.target as HTMLInputElement).value = ''
+        emit('add-todo', ($event.target as HTMLInputElement).value);
+        ($event.target as HTMLInputElement).value = '';
       "
     />
   </Header>
@@ -20,8 +20,8 @@
 
 <script setup lang="ts">
 const emit = defineEmits<{
-  (e: 'add-todo', value: string): void
-}>()
+  (e: 'add-todo', value: string): void;
+}>();
 </script>
 
 <style scoped></style>

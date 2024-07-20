@@ -23,56 +23,56 @@
 </template>
 
 <script setup lang="ts">
-import type { Todo } from '@/@types'
-import { computed, ref, nextTick } from 'vue'
+import type { Todo } from '@/@types';
+import { computed, ref, nextTick } from 'vue';
 
 const props = defineProps<{
-  todo: Todo
-}>()
+  todo: Todo;
+}>();
 
 const emit = defineEmits<{
-  (e: 'delete-todo', todo: Todo): void
-  (e: 'complete-todo', todo: Todo, completeVal: boolean): void
-  (e: 'edit-todo', todo: Todo, value: string): void
-}>()
+  (e: 'delete-todo', todo: Todo): void;
+  (e: 'complete-todo', todo: Todo, completeVal: boolean): void;
+  (e: 'edit-todo', todo: Todo, value: string): void;
+}>();
 
 const isTodoCompleted = computed<boolean>({
   get: () => props.todo.complete,
   set: (newVal: boolean) => emit('complete-todo', props.todo, newVal)
-})
-const editRef = ref<HTMLInputElement>() // Element du Dom
-const editing = ref<boolean>(false)
-const editText = ref<string>('')
+});
+const editRef = ref<HTMLInputElement>(); // Element du Dom
+const editing = ref<boolean>(false);
+const editText = ref<string>('');
 const editInput = computed({
   get: () => props.todo.title,
   set: (val) => {
-    editText.value = val
+    editText.value = val;
   }
-})
+});
 
 function startEditing() {
-  editing.value = true
+  editing.value = true;
 
   // Faire un focus sur le champ de saisie
   nextTick(() => {
-    editRef.value?.focus()
-  })
+    editRef.value?.focus();
+  });
 }
 
 function finishEdit() {
-  editing.value = false
+  editing.value = false;
 
-  editTodo()
+  editTodo();
 }
 
 function cancelEdit() {
-  editing.value = false
+  editing.value = false;
 }
 
 function editTodo() {
-  emit('edit-todo', props.todo, editText.value) // emmettre un event
+  emit('edit-todo', props.todo, editText.value); // emmettre un event
 
-  editText.value = ''
+  editText.value = '';
 }
 </script>
 

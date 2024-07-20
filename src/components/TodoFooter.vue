@@ -21,23 +21,29 @@
       </li>
     </ul>
 
-    <button v-show="todos.some((todo) => todo.complete)" class="clear-completed" @click="emit('delete-completed')">Eff. tâche terminées</button>
+    <button
+      v-show="todos.some((todo) => todo.complete)"
+      class="clear-completed"
+      @click="emit('delete-completed')"
+    >
+      Eff. tâche terminées
+    </button>
   </footer>
 </template>
 
 <script setup lang="ts">
-import type { Todo } from '@/@types'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import type { Todo } from '@/@types';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 const props = defineProps<{
-  todos: Todo[]
-}>()
+  todos: Todo[];
+}>();
 
 const emit = defineEmits<{
-  (e: 'delete-completed'): void
-}>()
-const route = useRoute()
-const remaining = computed(() => props.todos.filter((todo) => !todo.complete).length)
+  (e: 'delete-completed'): void;
+}>();
+const route = useRoute();
+const remaining = computed(() => props.todos.filter((todo) => !todo.complete).length);
 </script>
 
 <style scoped></style>
