@@ -21,19 +21,20 @@
                 type="password"
                 required
               ></v-text-field>
-              <v-btn :disabled="!valid" color="primary" @click="login"> Login </v-btn>
+              <v-btn :disabled="!valid" color="primary" @click="handleLogin"> Login </v-btn>
             </v-form>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
-  <pre>{{ {user} }}</pre>
+  <pre>{{ { user } }}</pre>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useAuth } from '@vueuse/firebase';
+import { useAuth } from '@/composables/auth';
+
 import { auth } from '@/configs/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -52,19 +53,11 @@ const passwordRules = [
 ];
 
 const form = ref();
-const { user } = useAuth(auth);
 
-function login() {
-  signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+const { login, user } = useAuth();
+
+async function handleLogin() {
+  await login(email.value, password.value);
 }
 </script>
 
