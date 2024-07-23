@@ -9,6 +9,7 @@
       @delete-todo="deleteTodo"
       @complete-todo="completedTodo"
       @edit-todo="editTodo"
+      @toggle-all-input="toggleAllInput"
     />
 
     <!-- Footer -->
@@ -76,6 +77,12 @@ function completedTodo(todo: Todo, completedValue: boolean) {
 
 function editTodo(todo: Todo, value: string) {
   todo.title = value;
+}
+
+function toggleAllInput(value: boolean) {
+  todos.value.forEach((todo) => {
+    todo.complete = value;
+  });
 }
 </script>
 
